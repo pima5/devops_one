@@ -66,8 +66,9 @@ class base {
     path    => "/usr/bin/"
  }
 
-  #$apache2pkg = [','httpd-devel', 'mod_ssl', 'ruby-devel', 'rubygems', 'gcc']
-  $apache_packages =[ 'mod_ssl', 'ruby-devel', 'rubygems', 'gcc', 'gcc-c++']
+  #$apache_packages =[ 'httpd','httpd-devel','mod_ssl', 'ruby-devel', 'rubygems', 'gcc', 'gcc-c++']
+  $apache_packages =[ 'httpd','httpd-devel','libcurl-devel', 'openssl-devel','mod_ssl', 'ruby-devel', 'rubygems', 'gcc', 'gcc-c++']
+  
   
   package { $apache_packages:
     ensure => 'installed',
@@ -78,7 +79,10 @@ class base {
     path    => "/usr/bin/"
   }
   
-  
+  exec { "install passenger module":
+    command => "passenger-install-apache2-module --auto",
+    path    => "/usr/local/bin/"
+  }
  
  
  
