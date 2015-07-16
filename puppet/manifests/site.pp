@@ -1,6 +1,6 @@
-node 'ip-10-0-1-55.ap-southeast-2.compute.internal' {
+node default {
    class { 'base': }
-   class { 'passenger': }
+   #class { 'passenger': }
    
 }
 class base {
@@ -73,10 +73,10 @@ class base {
     ensure => 'installed',
   }
 
-  #exec { "install rack/passenger":
-  #  command => "gem install rack passenger",
-  #  path    => "/usr/bin/"
-  #}
+  exec { "install rack/passenger":
+    command => "gem install rack passenger",
+    path    => "/usr/bin/"
+  }
   
   
  
